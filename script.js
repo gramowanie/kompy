@@ -149,8 +149,8 @@ const vue = new Vue({
             if (score < 1050) return 0.8
             if (score < 2100) return 0.7
             if (score < 3500) return 0.5
-            if (score < 5450) return 0.3
-            if (score < 5500) return 0.2
+            if (score < 5450) return 0.4
+            if (score < 5500) return 0.3
             return 1
         }
     },
