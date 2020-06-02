@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Kompy</title>
+</head>
+
+<body>
+    <div id="app">
+        <template v-if="ended">
+            <!-- <iframe src="https://giphy.com/embed/10h8CdMQUWoZ8Y" style="height:100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+            <!-- <video autoplay>
+                <source src="You Get Nothing.mp4" type="video/mp4" autoplay>
+              </video> -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/M5QGkOGZubQ?autoplay=true"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </template>
+        <template v-if="!started || ended">
+            <div><button class="start" @click="start">
+                <div style="padding:10px; border-radius: 12px; background-color:#000000; color:#FFFFFF; text-align:center;; font-weight: bold;">
+                    CLICK TO START NEW SEASON</div>
+                <img src="https://www.destinykd.com/images/glory-rank3.png" alt="GLORY" width="100" height="100">
+            </button></div>
+        </template>
+        <template v-if="started && !ended">
+            <div class="block slick-slide slick-active" id="col2" data-slick-index="1" aria-hidden="false"
+                style="width: 181px; position: relative; top: 0px;">
+
+                <div style="padding:10px; background-color:#000000; color:#FFFFFF; text-align:center; font-size:11px">
+                    CRUCIBLE
+                    CAREER STATS</div>
+                <div style="margin-bottom:10px; border-bottom:5px solid #252525">
+                    <table style="background-color:#EFEFEF; color:#FFF; font-size:14px" width="100%" border="0"
+                        cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr style="font-size:12px">
+                                <td height="30" align="center" bgcolor="#999999">PVP RANKINGS</td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <table width="100%" border="0" cellspacing="5" cellpadding="5" style="color:#000;">
+                                        <tbody>
+                                            <tr>
+
+                                                <td nowrap="nowrap">
+                                                    <div>Glory Rank</div>
+                                                    <div><b>{{score|rank}}</b></div>
+                                                    <div>
+                                                        <div style="float:left; padding-right:5px"><img
+                                                                src="https://www.bungie.net/img/theme/destiny/icons/icon_pvprank_red.png"
+                                                                height="16"></div>
+                                                        <div style="float:left">{{score}}</div>
+                                                    </div>
+                                                </td>
+                                                <td width="75" align="center" nowrap="nowrap"><img
+                                                        src="https://www.destinykd.com/images/glory-rank3.png"
+                                                        alt="GLORY" width="70" height="70">Legend: <b>2</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="block slick-slide slick-active" id="recent-games" style="width: 360px;">
+
+                <div
+                    style="padding:10px; background-color:#000000; color:#FFFFFF; text-align:center; font-size:11px;margin-bottom:-10px;">
+                    RECENT GAMES</div>
+
+                <transition-group tag="div" name="list">
+
+                    <div class="recent-box list-item" v-for="game of games" :key="game.played">
+                        <div style="background-color:#999; height:40px; color:#FFF">
+                            <div style="float:left; padding-left:7px; text-align:left">
+                                <div style="margin-top:0px"><span style="font-size:16px"><b>{{game.map}}</b></span>
+                                </div>
+                                <div style="margin-top:-5px"><span style="font-size:10px">Played
+                                        {{time-game.played|moment}}</span>
+                                </div>
+                            </div>
+                            <div
+                                style="float:right; background-image: url('https://www.destinykd.com/images/recent-header-angle.png'); background-repeat:no-repeat; background-color:#EFEFEF;padding-right:25px; padding-left:45px; height:40px; text-align:center; line-height:44px">
+                                <span
+                                    v-bind:style="{fontSize:'18px', color:game.score==4?'green':'red'}"><b>{{game.score==4?'Victory':'Defeat'}}</b>
+                                </span></div>
+                        </div>
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="normal"
+                            style="font-size:12px">
+                            <tbody>
+                                <tr>
+                                    <td width="85" align="center"><a class="popup-trigger" id="6321601515">
+                                            <div
+                                                style="width: 69px; height: 69px; background-color: #333; padding: 10px; margin-right: 3px;">
+                                                <img src="//www.bungie.net/common/destiny2_content/icons/DestinyActivityModeDefinition_fb3e9149c43f7a2e8f8b66cbea7845fe.png"
+                                                    alt="Survival" title="Survival" height="50">
+                                                <div
+                                                    style="padding-top: 2px; margin-top: 6px; font-size: 10px; color: #EFEFEF; text-align: center;">
+                                                    Load Report</div>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td valign="top">
+                                        <div style="border-bottom:1px dotted #CCC; margin:0px 10px">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="25%" height="45" align="center" class="normal">
+                                                            Score<br>
+                                                            <b>{{game.score}}</b></td>
+                                                        <td width="50%" align="center"><span
+                                                                :style="{color: game.kills>=game.deaths?'green':'red', textAlign: 'center', fontWeight: 'bold', fontSize: '36px'}">{{game.kills/(game.deaths||1)|fixed}}</span>
+                                                        </td>
+                                                        <td width="25%" align="center" class="normal">Efficiency<br>
+                                                            <span
+                                                                :style="{color: game.kills+game.assists>=game.deaths?'green':'red'}"><b>{{(game.kills+game.assists)/(game.deaths||1)|fixed}}</b></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div style="text-align:center; margin:0px 10px; padding-top:7px">
+                                            <table width="100%" border="0" align="center" cellpadding="0"
+                                                cellspacing="0" class="normal">
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="center">Kills: <b>{{game.kills}}</b></td>
+                                                        <td align="center">Deaths: <b>{{game.deaths}}</b></td>
+                                                        <td align="center">Assists: <b>{{game.assists}}</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="clear:both"></div>
+                    </div>
+                </transition-group>
+
+            </div>
+        </template>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

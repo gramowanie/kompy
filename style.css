@@ -1,0 +1,59 @@
+div {
+    font-family: sarala, sans-serif;
+    display: block;
+}
+
+.recent-box {
+    border-top: 7px solid #999;
+    border-bottom: 1px solid #999;
+    border-right: 1px solid #999;
+    background-color: #efefef;
+    color: #000;
+    margin-top: 10px;
+    height: 138px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.list-item {
+    /* display: inline-block; */
+    /* margin-right: 10px; */
+    transition: all 0.5s;
+}
+
+.list-enter,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(360px);
+}
+
+.list-leave-active {
+    position: absolute;
+}
+
+
+
+.slick-slide {
+    float: left;
+    min-height: 1px;
+}
+
+.block {
+    margin: 10px;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+button.start {
+    font-family: sarala, sans-serif;
+    /* background-image: url("https://www.destinykd.com/images/glory-rank3.png"); */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
