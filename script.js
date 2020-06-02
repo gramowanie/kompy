@@ -84,15 +84,16 @@ const vue = new Vue({
             this.score = 0;
             this.time = 0;
             this.games = [];
-            let counter = 3;
+            let counter = 100;
             let self = this;
             var loop = () => {
-                if (counter > 0) {
+                if (this.score >= 5500) {
+                    self.ended = true;
+                } else if (counter > 0) {
                     counter--;
                     self.addRandom()
                     setTimeout(loop, 1000);
-                }
-                else {
+                } else {
                     self.ended = true;
                 }
                 // self.score += random(100)
@@ -112,11 +113,15 @@ const vue = new Vue({
                     // victory: false,
                     score: 4,
                     kills: Math.max(random(12), random(12)),
-                    deaths: Math.min(random(24), random(24)),
+                    deaths: Math.min(random(20), random(20)),
                     assists: Math.max(random(6), random(6)),
                 });
-
                 this.score = Math.min(this.score + 40 + random(120), 5500)
+                // beginners boost
+                if (this.score < 2500) {
+                    this.score += Math.min(this.score * 0.33, (2500 - this.score) * 0.33)
+                    this.score |= 0;
+                }
             } else {
                 this.games.unshift({
                     map: maps[Math.floor(Math.random() * maps.length)],
@@ -143,8 +148,8 @@ const vue = new Vue({
             if (score < 200) return 0.9
             if (score < 1050) return 0.8
             if (score < 2100) return 0.7
-            if (score < 3500) return 0.6
-            if (score < 5450) return 0.4
+            if (score < 3500) return 0.5
+            if (score < 5450) return 0.3
             if (score < 5500) return 0.2
             return 1
         }

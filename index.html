@@ -12,7 +12,7 @@
 
 <body>
     <div id="app">
-        <template v-if="ended">
+        <template v-if="ended && score < 5500">
             <!-- <iframe src="https://giphy.com/embed/10h8CdMQUWoZ8Y" style="height:100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
             <!-- <video autoplay>
                 <source src="You Get Nothing.mp4" type="video/mp4" autoplay>
@@ -21,14 +21,19 @@
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </template>
+        <template v-if="ended && score == 5500">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hf1DkBQRQj4?autoplay=true"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </template>
         <template v-if="!started || ended">
             <div><button class="start" @click="start">
                 <div style="padding:10px; border-radius: 12px; background-color:#000000; color:#FFFFFF; text-align:center;; font-weight: bold;">
                     CLICK TO START NEW SEASON</div>
-                <img src="https://www.destinykd.com/images/glory-rank3.png" alt="GLORY" width="100" height="100">
+                <img src="glory-rank3.png" alt="GLORY" width="100" height="100">
             </button></div>
         </template>
-        <template v-if="started && !ended">
+        <template v-if="started">
             <div class="block slick-slide slick-active" id="col2" data-slick-index="1" aria-hidden="false"
                 style="width: 181px; position: relative; top: 0px;">
 
@@ -59,7 +64,7 @@
                                                     </div>
                                                 </td>
                                                 <td width="75" align="center" nowrap="nowrap"><img
-                                                        src="https://www.destinykd.com/images/glory-rank3.png"
+                                                        src="glory-rank3.png"
                                                         alt="GLORY" width="70" height="70">Legend: <b>2</b></td>
                                             </tr>
                                         </tbody>
@@ -92,7 +97,7 @@
                                 </div>
                             </div>
                             <div
-                                style="float:right; background-image: url('https://www.destinykd.com/images/recent-header-angle.png'); background-repeat:no-repeat; background-color:#EFEFEF;padding-right:25px; padding-left:45px; height:40px; text-align:center; line-height:44px">
+                                style="float:right; background-image: url('recent-header-angle.png'); background-repeat:no-repeat; background-color:#EFEFEF;padding-right:25px; padding-left:45px; height:40px; text-align:center; line-height:44px">
                                 <span
                                     v-bind:style="{fontSize:'18px', color:game.score==4?'green':'red'}"><b>{{game.score==4?'Victory':'Defeat'}}</b>
                                 </span></div>
